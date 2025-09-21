@@ -1,0 +1,25 @@
+server:
+  port: 8085   # minden service más porton fusson lokálisan
+
+spring:
+  application:
+    name: payment-service
+
+  datasource:
+    url: jdbc:postgresql://postgres-db:5432/ecommerce
+    username: ecommerce_user
+    password: ecommerce_pass
+    driver-class-name: org.postgresql.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        default_schema: payment_service   # fontos: minden service-nek saját séma
+
+logging:
+  level:
+    root: INFO
+    org.springframework: INFO
