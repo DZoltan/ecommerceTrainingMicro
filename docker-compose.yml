@@ -14,7 +14,7 @@ services:
       - pgdata:/var/lib/postgresql/data
 
   auth-service:
-    build: ./auth-service
+    build: ./auth-service/eCommerceMicroAuth
     container_name: auth-service
     ports:
       - "8081:8080"
@@ -27,7 +27,7 @@ services:
       - postgres-db
 
   product-service:
-    build: ./product-service
+    build: ./product-service/eCommerceMicroProduct
     container_name: product-service
     ports:
       - "8082:8080"
@@ -40,7 +40,7 @@ services:
       - postgres-db
 
   order-service:
-    build: ./order-service
+    build: ./order-service/eCommerceMicroOrder
     container_name: order-service
     ports:
       - "8083:8080"
@@ -53,7 +53,7 @@ services:
       - postgres-db
 
   cart-service:
-    build: ./cart-service
+    build: ./cart-service/eCommerceMicroCart
     container_name: cart-service
     ports:
       - "8084:8080"
@@ -66,7 +66,7 @@ services:
       - postgres-db
 
   payment-service:
-    build: ./payment-service
+    build: ./payment-service/eCommerceMicroPayment
     container_name: payment-service
     ports:
       - "8085:8080"
@@ -79,7 +79,7 @@ services:
       - postgres-db
 
   shipping-service:
-    build: ./shipping-service
+    build: ./shipping-service/eCommerceMicroShipping
     container_name: shipping-service
     ports:
       - "8086:8080"
@@ -92,16 +92,16 @@ services:
       - postgres-db
 
   notification-service:
-    build: ./notification-service
+    build: ./notification-service/eCommerceMicroNotification
     container_name: notification-service
     ports:
       - "8087:8080"
     depends_on:
-      - user-service
+      - auth-service
       - order-service
 
   inventory-service:
-    build: ./inventory-service
+    build: ./inventory-service/eCommerceMicroInventory
     container_name: inventory-service
     ports:
       - "8088:8080"
